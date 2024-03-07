@@ -24,7 +24,7 @@ public final class App {
             UsersPage page;
             if (term != null) {
                 page = new UsersPage(USERS.stream().filter(a ->
-                        a.getFirstName().toLowerCase().equals(term.toLowerCase())).toList(), term);
+                        a.getFirstName().toLowerCase().startsWith(term.toLowerCase())).toList(), term);
             } else {
                 page = new UsersPage(USERS, term);
             }
