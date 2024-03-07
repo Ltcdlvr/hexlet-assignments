@@ -35,8 +35,8 @@ public final class App {
         });
 
         app.post("/users", ctx -> {
-            var name = ctx.formParamAsClass("name", String.class).getOrDefault("").trim();
-            var surname = ctx.formParamAsClass("surname", String.class).getOrDefault("").trim();
+            var name = ctx.formParamAsClass("firstName", String.class).getOrDefault("").trim();
+            var surname = ctx.formParamAsClass("lastName", String.class).getOrDefault("").trim();
             var email = ctx.formParamAsClass("email", String.class).getOrDefault("").trim().toLowerCase();
             var password = Security.encrypt(ctx.formParam("password"));
             UserRepository.save(new User(name.toUpperCase(), surname.toUpperCase(), email, password));
