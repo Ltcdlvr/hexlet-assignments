@@ -14,7 +14,7 @@
         @if(!page.getUsers().isEmpty())
             @for(var user : page.getUsers())
                <div>
-                   <p>${user.toString()}</p>
+                   <p>${user.getFirstName()} ${user.getLastName()}</p>
                </div>
             @endfor
         @endif
