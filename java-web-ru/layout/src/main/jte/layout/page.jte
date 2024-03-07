@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Hexlet Javalin Example</title>
         <a href="/">Main page</a>
+        <a href="/users">Users</a>
     </head>
     <body>
         <div class="content">
@@ -16,6 +17,7 @@
         <div class="footer">
             <title>Javalin Footer Example</title>
             <a href="/">Main page (footer)</a>
+            <a href="/users">Users (footer)</a>
         </div>
     </body>
 </html>

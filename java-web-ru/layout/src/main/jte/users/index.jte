@@ -4,7 +4,7 @@
 @template.layout.page(
     content = @`
         @for(var user : page.getUsers())
-            <div>${user.toString()}</div>
+            <div>${user.getFirstName()} ${user.getLastName()}</div>
         @endfor
     `
 )

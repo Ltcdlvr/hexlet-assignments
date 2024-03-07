@@ -3,6 +3,6 @@
 
 @template.layout.page(
     content = @`
-        <div>${page.getUser().toString()}</div>
+        <div>${page.getUser().getFirstName()} ${page.getUser().getLastName()}</div>
     `
 )
