@@ -42,14 +42,14 @@ public final class App {
             try {
                 title = ctx.formParamAsClass("title", String.class)
                         .check(value -> value.length() > 1, "Название не должно быть короче двух символов")
-                        .get();
-                content = ctx.formParamAsClass("content", String.class)
-                        .check(value -> value.length() > 9, "Статья должна быть не короче 10 символов")
                         .check(value -> {
                                     Optional<Article> existedArticle = ArticleRepository.findByTitle(value);
                                     return existedArticle.isEmpty();
                                 },
                                 "Статья с таким названием уже существует")
+                        .get();
+                content = ctx.formParamAsClass("content", String.class)
+                        .check(value -> value.length() > 9, "Статья должна быть не короче 10 символов")
                         .get();
                 ArticleRepository.save(new Article(title, content));
                 ctx.redirect("/articles");
