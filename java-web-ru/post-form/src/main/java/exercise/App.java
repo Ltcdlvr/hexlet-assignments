@@ -8,7 +8,7 @@ import java.util.Objects;
 import exercise.model.User;
 import exercise.dto.users.UsersPage;
 import exercise.repository.UserRepository;
-//import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import exercise.util.Security;
 
 public final class App {
@@ -39,7 +39,7 @@ public final class App {
             var surname = ctx.formParamAsClass("lastName", String.class).getOrDefault("").trim();
             var email = ctx.formParamAsClass("email", String.class).getOrDefault("").trim().toLowerCase();
             var password = Security.encrypt(ctx.formParam("password"));
-            UserRepository.save(new User(name.toUpperCase(), surname.toUpperCase(), email, password));
+            UserRepository.save(new User(StringUtils.capitalize(name), StringUtils.capitalize(surname), email, password));
             ctx.redirect("/users");
         });
         // END
