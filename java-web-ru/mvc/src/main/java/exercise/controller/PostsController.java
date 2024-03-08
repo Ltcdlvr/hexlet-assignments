@@ -45,7 +45,9 @@ public class PostsController {
     // BEGIN
     public static void updateInit(Context ctx) {
         var id = ctx.pathParamAsClass("id", Long.class).get();
-        var page = new EditPostPage(id);
+        var post = PostRepository.find(id)
+                .orElseThrow(() -> new NotFoundResponse("Post not found"));
+        var page = new EditPostPage(id, post.getName(), post.getBody());
         ctx.render("posts/edit.jte", Collections.singletonMap("page", page));
     }
 
