@@ -9,11 +9,17 @@ import exercise.repository.UsersRepository;
 import static exercise.util.Security.encrypt;
 import exercise.model.User;
 
+import exercise.util.NamedRoutes;
 import io.javalin.http.Context;
 
 public class SessionsController {
 
     // BEGIN
+    public static void root(Context ctx) {
+        ctx.render("index.jte",
+                Collections.singletonMap("page", new MainPage(ctx.sessionAttribute("auth"))));
+    }
+
     public static void build(Context ctx) {
         ctx.render("build.jte");
     }
@@ -31,8 +37,8 @@ public class SessionsController {
             ctx.render("build.jte", Collections.singletonMap("page", new LoginPage(name,
                     "Wrong username or password")));
         } else {
-            ctx.sessionAttribute("auth", String.valueOf(true));
-            ctx.render("index.jte", Collections.singletonMap("page", new MainPage(name)));
+            ctx.sessionAttribute("auth", String.valueOf(user.get().getName()));
+            ctx.redirect(NamedRoutes.rootPath()); // , Collections.singletonMap("page", new MainPage(name))
         }
     }
 
@@ -40,8 +46,8 @@ public class SessionsController {
         deleteSession(ctx);
     }
     public static void deleteSession(Context ctx) {
-        ctx.sessionAttribute("auth", String.valueOf(false));
-        ctx.render("index.jte", Collections.singletonMap("page", new MainPage(null)));
+        ctx.sessionAttribute("auth", null);
+        ctx.redirect(NamedRoutes.rootPath()); // , Collections.singletonMap("page", new MainPage(null)));
     }
 
     // END
