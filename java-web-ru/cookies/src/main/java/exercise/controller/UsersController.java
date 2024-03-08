@@ -1,6 +1,6 @@
 package exercise.controller;
 
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
 import exercise.util.Security;
 import exercise.model.User;
 import exercise.util.NamedRoutes;
@@ -31,7 +31,7 @@ public class UsersController {
     }
 
     public static void show(Context ctx) {
-        var id = ctx.formParamAsClass("id", Long.class).get();
+        var id = ctx.pathParamAsClass("id", Long.class).get();
         var curToken = String.valueOf(ctx.cookie("visitedToken"));
         var user = UserRepository.find(id)
                 .orElseThrow(() -> new NotFoundResponse("User not found"));
