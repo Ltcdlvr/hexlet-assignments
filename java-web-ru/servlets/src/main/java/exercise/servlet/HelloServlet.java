@@ -13,13 +13,10 @@ public class HelloServlet extends HttpServlet {
     // BEGIN
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        Object objName = req.getAttribute("name");
+        Object name = req.getParameter("name");
         res.setContentType("text/plain");
-        String name;
-        if (objName == null) {
+        if (name == null) {
             name = "Guest";
-        } else {
-            name = objName.toString();
         }
         res.getWriter().write("Hello, " + name + "!");
     }
