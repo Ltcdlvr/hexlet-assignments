@@ -20,7 +20,7 @@ public class Application {
                     // Выполняем метод с аннотацией LogExecutionTime
                     String methodName = method.getName();
                     Class<?> returnType = method.getReturnType();
-                    System.out.println("Method " + methodName + " returns a value of type " + returnType.getName() + ".");
+                    System.out.println("Method " + methodName + " returns a value of type " + returnType.getSimpleName() + ".");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
