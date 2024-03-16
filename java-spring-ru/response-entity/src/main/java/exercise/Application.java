@@ -49,10 +49,10 @@ public class Application {
     }
 
     @PostMapping("/posts")
-    public ResponseEntity<List<Post>> createNew(@RequestBody Post post) {
+    public ResponseEntity<Post> createNew(@RequestBody Post post) {
         posts.add(post);
         return ResponseEntity.status(201)
-                .body(posts);
+                .body(post);
     }
 
     @PutMapping("/posts/{id}")
